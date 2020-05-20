@@ -1,0 +1,28 @@
+{
+  "name": "taskify",
+  "version": "1.0.0",
+  "description": "web app for creating tasks + backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moritzmitterdorfer/Taskify.git"
+  },
+  "keywords": [
+    "todos",
+    "todo-list",
+    "express",
+    "node-js",
+    "js",
+    "html",
+    "css"
+  ],
+  "author": "Moritz Mitterdorfer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/moritzmitterdorfer/Taskify/issues"
+  },
+  "homepage": "https://github.com/moritzmitterdorfer/Taskify#readme"
+}
