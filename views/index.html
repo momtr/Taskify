@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taskify</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ajusa/lit@latest/dist/lit.css" />
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
@@ -11,19 +14,15 @@
 </head>
 <body>
 
-    <h1>
-        Taskify
-    </h1>
-
-    <input type="text" id="workspaceUUID">
-
-    <button onclick="getWorkspace()">
-        Browse
-    </button>
-    
-    <button onclick="createWorkspace()">
-        Crete new workspace
-    </button>
+    <div class="c main-container">
+        <div class="wrapper">
+            <h1>Tafy</h1>
+            <h6>You can use Tafy to manage everything you need to do!</h6>
+            <input type="text" id="workspaceUUID">
+            <button startButton class="primary" onclick="getWorkspace()">Browse</button>
+            <a href="/workspaces/new">Crete new workspace</button>
+        </div>
+    </div>  
     
 </body>
 </html>
