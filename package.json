@@ -24,5 +24,11 @@
   "bugs": {
     "url": "https://github.com/moritzmitterdorfer/Taskify/issues"
   },
-  "homepage": "https://github.com/moritzmitterdorfer/Taskify#readme"
+  "homepage": "https://github.com/moritzmitterdorfer/Taskify#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "joi": "^14.3.1",
+    "morgan": "^1.10.0"
+  }
 }
