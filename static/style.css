@@ -118,7 +118,7 @@ button {
 }
 
 .task {
-    flex: 0 0 200px;
+    flex: 1 1 200px;
     border: 1px solid #f1f1f1;
     border-radius: 4px;
     padding: 2%;
@@ -193,6 +193,10 @@ button {
 @media (max-width: 600px) {
     .media-no-c {
         text-align: left;
-        font-size: 70%;
+        font-size: 80%;
+    }
+    .media-text-align-left {
+        text-align: left;
+        font-size: 120%;
     }
 }
