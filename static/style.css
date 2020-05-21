@@ -115,16 +115,27 @@ button {
     display: flex;
     /* flex-direction: row */
     flex-direction: column;
-    flex-wrap: wrap;
 }
 
 .task {
     /* flex: 1 1 200px; */
-    flex: 1 1 0px;
+    flex: 1 1 0;
     border: 1px solid #f1f1f1;
     border-radius: 4px;
-    padding: 0.8%;
     margin: 0.5%;
+}
+
+.task-prio {
+    width: 10%;
+    display: inline-block;
+    margin-right: 2%;
+}
+
+.task-title {
+    font-family: lato, sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 80%;
 }
 
 .task:hover {

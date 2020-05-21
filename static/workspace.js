@@ -39,12 +39,13 @@ $(document).ready(async () => {
     for(let i of keys) {
         if(!tasks[i].done) {
             let prio = tasks[i].priority || 'prio-low';
-            $('#tasks').append(`<div class="task ${prio}" id="${i}" onclick="doneTask(${i})">${tasks[i].title}\n</div>`);
+            $('#tasks').append(`<div class="task" id="${i}" onclick="doneTask(${i})"><span class="task-prio ${prio}">&nbsp;</span><span class="task-title">${tasks[i].title}</span></div>`);
         }
     }
     for(let i of keys) {
         if(tasks[i].done && !tasks[i].removed) {
-            $('#doneTasks').append(`<div class="task" onclick="removeTask(${i})" id="${i}_done">${tasks[i].title}\n</div>`);
+            let prio = tasks[i].priority || 'prio-low';
+            $('#doneTasks').append(`<div class="task" id="${i}" onclick="doneTask(${i})"><span class="task-prio ${prio}">&nbsp;</span><span class="task-title">${tasks[i].title}</span></div>`);
         }
     }
 });
