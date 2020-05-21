@@ -41,12 +41,13 @@ function newTask() {
         input: 'text',
         confirmButtonText: 'Next &rarr;',
         showCancelButton: true,
-        progressSteps: ['1', '2', '3', '4'],
+        progressSteps: ['1'],
       }).queue([
         {
             title: '👋 Create new task',
             text: 'Title'
         },
+        /*
         {
             title: '👋 Create new task',
             text: 'Description'
@@ -59,6 +60,7 @@ function newTask() {
             title: '👋 Create new task',
             text: 'Time'
         },
+        */
       ]).then(result => {
         let data = {
             title: result.value[0],
