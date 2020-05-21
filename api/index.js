@@ -1,5 +1,6 @@
 const express = require('express');
 const Joi = require('joi');
+const striptags = require('striptags');
 
 const FirebaseRealTime = require('../libs/firebase/database');
 const db = new FirebaseRealTime();
@@ -85,6 +86,7 @@ router.post('/tasks/:workspaceUUID', async (req, res, next) => {
     }
     /** insert into db */
     req.query.done = false;
+    req.query.title = striptags(req.query.title);
     db.insertData('workspaces', `${uuid}/tasks/${Date.now()}`, req.query);
     res.json({
         message: '🍭 successfully created task',
