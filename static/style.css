@@ -181,6 +181,27 @@ button {
     margin-top: 5%;
 }
 
+.footer {
+    width: 100%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    text-align: center;
+    color: white;
+    background-color: rgba(0, 89, 255, 0.5);
+}
+
+.footer-head {
+    font-size: 90%;
+}
+
+.footer-low {
+    font-size: 50%;
+}
+
+.footer-low a {
+    text-decoration: none;
+}
+
 @media (max-width: 800px) {
     body {
         font-size: 90%;
