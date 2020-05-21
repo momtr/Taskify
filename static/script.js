@@ -1,11 +1,12 @@
 onload = () => {
     let workspaceUUID = Cookies.get('workspaceUUID');
     if(workspaceUUID)
-        redirect(`/${workspaceUUID}`);
+        $('#workspaceUUID').val(`${workspaceUUID}`);
 }
 
 function getWorkspace() {
     let uuid = $('#workspaceUUID').val();
+    Cookies.set('workspaceUUID', uuid);
     if(uuid) 
         redirect(`/${uuid}`);
 }

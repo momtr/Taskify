@@ -6,6 +6,7 @@ $(document).ready(async () => {
 
     /** get the tasks */
     workspaceUUID = window.location.href.split('/')[3] || '&';
+    $('#workspaceUUID').append(workspaceUUID);
     let req = await fetch(`api/v1/workspaces/${workspaceUUID}`);
     let json = await req.json();
 
@@ -24,12 +25,12 @@ $(document).ready(async () => {
     /** sort them */
     for(let i of keys) {
         if(!tasks[i].done) {
-            $('#tasks').append(`<div id="${i}">${tasks[i].title}\n<button onclick="doneTask(${i})">✅</button></div>`);
+            $('#tasks').append(`<div class="task" id="${i}" onclick="doneTask(${i})">${tasks[i].title}\n</div>`);
         }
     }
     for(let i of keys) {
         if(tasks[i].done && !tasks[i].removed) {
-            $('#doneTasks').append(`<div id="${i}_done">${tasks[i].title}\n<button onclick="removeTask(${i})">🔴</button></div>`);
+            $('#doneTasks').append(`<div class="task" onclick="removeTask(${i})" id="${i}_done">${tasks[i].title}\n</div>`);
         }
     }
 });
@@ -92,7 +93,7 @@ function doneTask(id) {
         .then(res => res.json())
         .then(() => { 
             $(`#${id}`).hide()
-            $('#doneTasks').append(`<div id="${id}_done">${tasks[id].title}\n<button onclick="removeTask(${id})">🔴</button></div>`)
+            $('#doneTasks').append(`<div class="task" onclick="removeTask(${id})" id="${id}_done">${tasks[id].title}\n</div>`)
         })
 }
 
