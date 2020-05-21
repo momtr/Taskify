@@ -1,4 +1,6 @@
 let workspaceUUID;
+let tasks;
+let keys;
 
 $(document).ready(async () => {
 
@@ -17,12 +19,17 @@ $(document).ready(async () => {
     }
 
     /** display tasks */
-    let tasks = json.data.tasks;
-    let keys = Object.keys(tasks);
+    tasks = json.data.tasks;
+    keys = Object.keys(tasks);
     /** sort them */
     for(let i of keys) {
         if(!tasks[i].done) {
             $('#tasks').append(`<div id="${i}">${tasks[i].title}\n<button onclick="doneTask(${i})">✅</button></div>`);
+        }
+    }
+    for(let i of keys) {
+        if(tasks[i].done && !tasks[i].removed) {
+            $('#doneTasks').append(`<div id="${i}_done">${tasks[i].title}\n<button onclick="removeTask(${i})">🔴</button></div>`);
         }
     }
 });
@@ -81,7 +88,16 @@ function newTask() {
 }
 
 function doneTask(id) {
-    fetch(`/api/v1/tasks/${workspaceUUID}/${id}`, { method: 'PUT' })
+    fetch(`/api/v1/tasks/done/${workspaceUUID}/${id}`, { method: 'PUT' })
         .then(res => res.json())
-        .then(() => $(`#${id}`).hide())
+        .then(() => { 
+            $(`#${id}`).hide()
+            $('#doneTasks').append(`<div id="${id}_done">${tasks[id].title}\n<button onclick="removeTask(${id})">🔴</button></div>`)
+        })
+}
+
+function removeTask(id) {
+    fetch(`/api/v1/tasks/remove/${workspaceUUID}/${id}`, { method: 'PUT' })
+        .then(res => res.json())
+        .then(() => $(`#${id}_done`).hide());
 }

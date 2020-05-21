@@ -92,7 +92,7 @@ router.post('/tasks/:workspaceUUID', async (req, res, next) => {
     });
 });
 
-router.put('/tasks/:workspaceUUID/:taskUUID', async (req, res, next) => {
+router.put('/tasks/done/:workspaceUUID/:taskUUID', async (req, res, next) => {
     const uuid = req.params.workspaceUUID;
     /** validate uuid */
     const validateUUID = Joi.validate({ uuid }, schemas.workspace);
@@ -102,15 +102,35 @@ router.put('/tasks/:workspaceUUID/:taskUUID', async (req, res, next) => {
     }
     const taskUUID = req.params.taskUUID;
     /** update in db */
-    db.insertData('workspaces', `${uuid}/tasks/${taskUUID}/done`, true);
+    db.insertData('workspaces', `${uuid}/tasks/${taskUUID}/done`, Date.now());
     res.json({
-        message: '✅ done!',
+        message: '✅ task done!',
         data: {
             workspace: uuid,
             task: taskUUID
         }
     })
-})
+});
+
+router.put('/tasks/remove/:workspaceUUID/:taskUUID', async (req, res, next) => {
+    const uuid = req.params.workspaceUUID;
+    /** validate uuid */
+    const validateUUID = Joi.validate({ uuid }, schemas.workspace);
+    if(validateUUID.error) {
+        next(new Error(validateUUID.error));
+        return;
+    }
+    const taskUUID = req.params.taskUUID;
+    /** update in db */
+    db.insertData('workspaces', `${uuid}/tasks/${taskUUID}/removed`, Date.now());
+    res.json({
+        message: '🔴 task removed!',
+        data: {
+            workspace: uuid,
+            task: taskUUID
+        }
+    })
+});
 
 module.exports = router;
 

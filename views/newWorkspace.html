@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taskify</title>
+    <link rel="stylesheet" href="https://use.typekit.net/kcz4yyu.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ajusa/lit@latest/dist/lit.css" />
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
     <link rel="stylesheet" href="../style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
@@ -12,17 +15,15 @@
 </head>
 <body>
 
-    <h1>
-        Taskify - New Workspace
-    </h1>
-
-    <input type="text" id="workspaceUUID">
-    
-    <button onclick="createWorkspace()">
-        Crete workspace
-    </button>
-
-    <div id="error"></div>
+    <div class="c main-container">
+        <div class="wrapper">
+            <h3>Create your own Workspace</h3>
+            <h6 class="line">Type in the name.</h6>
+            <input type="text" id="workspaceUUID">
+            <button startButton class="button-full primary" onclick="createWorkspace()">Create</button>
+            <div id="error"></div>
+        </div>
+    </div> 
     
 </body>
 </html>
