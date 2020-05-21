@@ -54,7 +54,7 @@ router.post('/workspaces/:workspaceUUID', async (req, res, next) => {
     }
     let exits = await db.getData(`workspaces/${uuid}`);
     if(!exits) {
-        db.insertData('workspaces', `${uuid}/tasks/${Date.now()}`, { title: '🍭 You have successully set up your workspace :)' });
+        db.insertData('workspaces', `${uuid}/tasks/${Date.now()}`, { title: '🍭 You have successully set up your workspace :) If you have finished a task, just click on it' });
         res.json({
             message: '🍭 You have successully set up your workspace :)',
             data: { workspaceUUID: uuid, reqMillis: Date.now() }
