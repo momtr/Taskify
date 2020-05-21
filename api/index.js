@@ -15,7 +15,8 @@ const schemas = {
         title: Joi.string().min(2).max(30).required(),
         description: Joi.optional(),
         untilDay: Joi.optional(),
-        untilTime: Joi.optional()
+        untilTime: Joi.optional(),
+        priority: Joi.optional()
     }
 }
 

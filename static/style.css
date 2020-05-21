@@ -113,16 +113,18 @@ button {
 
 .task-container {
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row */
+    flex-direction: column;
     flex-wrap: wrap;
 }
 
 .task {
-    flex: 1 1 200px;
+    /* flex: 1 1 200px; */
+    flex: 1 1 0px;
     border: 1px solid #f1f1f1;
     border-radius: 4px;
-    padding: 2%;
-    margin: 2%;
+    padding: 0.8%;
+    margin: 0.5%;
 }
 
 .task:hover {
@@ -200,6 +202,21 @@ button {
 
 .footer-low a {
     text-decoration: none;
+}
+
+.prio-high {
+    background-color: rgb(220, 53, 44, 0.7);
+    color: white;
+}
+
+.prio-medium {
+    background-color: rgb(219, 175, 242, 0.7);
+    color: white;
+}
+
+.prio-low {
+    background-color: rgb(80, 210, 110, 0.7);
+    color: white;
 }
 
 @media (max-width: 800px) {

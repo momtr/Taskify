@@ -1,8 +1,13 @@
 let workspaceUUID;
 let tasks;
 let keys;
+let view;
+let prios;
 
 $(document).ready(async () => {
+
+    view = ((Cookies.get('view') == 'true') ? true : false) || true;
+    // changeView();
 
     /** get the tasks */
     workspaceUUID = window.location.href.split('/')[3] || '&';
@@ -19,13 +24,22 @@ $(document).ready(async () => {
         return;
     }
 
-    /** display tasks */
+    /** tasks */
     tasks = json.data.tasks;
     keys = Object.keys(tasks);
     /** sort them */
+    keys.sort((a, b) => {
+        let aPrio = ((tasks[a].priority == 'prio-high') ? 3 : ((tasks[a].priority == 'prio-medium') ? 2 : ((tasks[a].priority == 'prio-low') ? 1 : 0)));
+        let bPrio = ((tasks[b].priority == 'prio-high') ? 3 : ((tasks[b].priority == 'prio-medium') ? 2 : ((tasks[b].priority == 'prio-low') ? 1 : 0)));
+        if(aPrio < bPrio)
+            return 1;
+        else return -1;
+    })
+    /** display tasks */
     for(let i of keys) {
         if(!tasks[i].done) {
-            $('#tasks').append(`<div class="task" id="${i}" onclick="doneTask(${i})">${tasks[i].title}\n</div>`);
+            let prio = tasks[i].priority || 'prio-low';
+            $('#tasks').append(`<div class="task ${prio}" id="${i}" onclick="doneTask(${i})">${tasks[i].title}\n</div>`);
         }
     }
     for(let i of keys) {
@@ -41,17 +55,24 @@ function newTask() {
         input: 'text',
         confirmButtonText: 'Next &rarr;',
         showCancelButton: true,
-        progressSteps: ['1'],
+        progressSteps: ['1', '2'],
       }).queue([
         {
             title: '👋 Create new task',
             text: 'Title'
         },
-        /*
         {
             title: '👋 Create new task',
-            text: 'Description'
+            input: 'select',
+            inputOptions: {
+                'prio-high': 'high',
+                'prio-medium': 'medium',
+                'prio-low': 'low'
+            },
+            inputPlaceholder: 'Select priority',
+            showCancelButton: true,
         },
+        /*
         {
             title: '👋 Create new task',
             text: 'Date in DD/MM'
@@ -64,10 +85,12 @@ function newTask() {
       ]).then(result => {
         let data = {
             title: result.value[0],
-            description: result.value[1],
-            untilDay: result.value[2],
-            untilTime: result.value[3]
+            priority: result.value[1],
+            description: result.value[2],
+            untilDay: result.value[3],
+            untilTime: result.value[4],
         }
+        console.log(data);
         let params = new URLSearchParams(data).toString();
         fetch(`/api/v1/tasks/${workspaceUUID}?${params}`, {
             method: 'POST',
@@ -103,4 +126,17 @@ function removeTask(id) {
     fetch(`/api/v1/tasks/remove/${workspaceUUID}/${id}`, { method: 'PUT' })
         .then(res => res.json())
         .then(() => $(`#${id}_done`).hide());
+}
+
+function changeView(set) {
+    if(view) {
+        $('.task-container').css('flex-direction', 'row');
+        $('.task').css('flex', '1 1 200px');
+    } else {
+        $('.task-container').css('flex-direction', 'column');
+        $('.task').css('flex', '1 1 0px');
+    }
+    Cookies.set('view', view);
+    if(set)
+        view = !view;
 }
