@@ -45,7 +45,7 @@ $(document).ready(async () => {
     for(let i of keys) {
         if(tasks[i].done && !tasks[i].removed) {
             let prio = tasks[i].priority || 'prio-low';
-            $('#doneTasks').append(`<div class="task" id="${i}" onclick="doneTask(${i})"><span class="task-prio ${prio}">&nbsp;</span><span class="task-title">${tasks[i].title}</span></div>`);
+            $('#doneTasks').append(`<div class="task" onclick="removeTask(${i})" id="${i}_done"><span class="task-title">${tasks[i].title}</span></div>`);
         }
     }
 });
@@ -119,7 +119,7 @@ function doneTask(id) {
         .then(res => res.json())
         .then(() => { 
             $(`#${id}`).hide()
-            $('#doneTasks').append(`<div class="task" onclick="removeTask(${id})" id="${id}_done">${tasks[id].title}\n</div>`)
+            $('#doneTasks').append(`<div class="task" onclick="removeTask(${id})" id="${id}_done"><span class="task-title">${tasks[id].title}</span></div>`)
         })
 }
 
@@ -129,6 +129,7 @@ function removeTask(id) {
         .then(() => $(`#${id}_done`).hide());
 }
 
+/*
 function changeView(set) {
     if(view) {
         $('.task-container').css('flex-direction', 'row');
@@ -141,3 +142,4 @@ function changeView(set) {
     if(set)
         view = !view;
 }
+*/
