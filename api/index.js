@@ -8,7 +8,7 @@ const router = express.Router();
 
 const schemas = {
     workspace: Joi.object().keys({
-        uuid: Joi.string().regex(/(^[a-zA-Z0-9_]*$)/).min(2).max(30).required()
+        uuid: Joi.string().regex(/(^[a-zA-Z0-9_]*$)/).min(2).max(100).required()
     }),
     task: {
         title: Joi.string().min(2).max(30).required(),
